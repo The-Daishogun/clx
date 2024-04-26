@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	openai "github.com/sashabaranov/go-openai"
-	"github.com/zalando/go-keyring"
 )
 
 const (
@@ -27,21 +26,7 @@ var TOKEN_FILE_DIR = filepath.Join(HOME_DIR, ".config", "clx")
 var TOKEN_FILE_PATH = filepath.Join(TOKEN_FILE_DIR, "token")
 var client *openai.Client
 
-func isWsl() bool {
-	if runtime.GOOS != "linux" {
-		return false
-	}
-	data, err := os.ReadFile("/proc/sys/kernel/osrelease")
-	if err != nil {
-		fmt.Println("Error Reading /proc/sys/kernel/osrelease", err)
-	}
-	return strings.Contains(string(data), "WSL")
-}
-
 func setToken(token string) error {
-	if !isWsl() {
-		return keyring.Set(TOKEN_SECRET_KEY, TOKEN_SECRET_USER, token)
-	}
 	err := os.MkdirAll(TOKEN_FILE_DIR, 0700)
 	if err != nil {
 		return err
@@ -54,9 +39,6 @@ func setToken(token string) error {
 }
 
 func getToken() (string, error) {
-	if !isWsl() {
-		return keyring.Get(TOKEN_SECRET_KEY, TOKEN_SECRET_USER)
-	}
 	token, err := os.ReadFile(TOKEN_FILE_PATH)
 	return string(token), err
 }
