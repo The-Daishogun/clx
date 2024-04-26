@@ -8,7 +8,7 @@ I just wanted a simple way to use the code so here we are.
 
 ## Installation
 ```bash
-$ curl -sSL https://raw.githubusercontent.com/The-Daishogun/clx/main/install.sh --output - | sudo bash
+curl -sSL https://raw.githubusercontent.com/The-Daishogun/clx/main/install.sh --output - | sudo bash
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ you need to set your groq api token first.
 head over to https://console.groq.com/keys and grab an api **token**. then run:
 
 ```bash
-$ clx set-token <YOUR_API_TOKEN>
+clx set-token <YOUR_API_TOKEN>
 ```
 
 #### Actual usage
@@ -25,7 +25,7 @@ after that the usage is simple.
 
 
 ```bash
-$ clx <PROMPT>
+clx <PROMPT>
 ```
 
 #### example usage:
