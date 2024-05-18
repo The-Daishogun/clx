@@ -8,11 +8,8 @@
 Running the following command will download and install the latest version of **clx**:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/The-Daishogun/clx/main/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/The-Daishogun/clx/main/install.sh | bash
 ```
-
-**Note:** This installation method uses `sudo` to place **clx** in a system-wide location. 
-
 ## Usage
 
 **clx** streamlines creating commands for common tasks. Simply provide a clear description of what you want to achieve, and clx will generate the corresponding command!

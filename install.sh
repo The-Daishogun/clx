@@ -43,12 +43,12 @@ fi
 install_dir="$HOME/.local/bin"
 
 # Make sure the installation directory exists
-sudo mkdir -p "$install_dir"
+mkdir -p "$install_dir"
 
 # Download the archive and extract it
 curl -L "$download_url" --output /tmp/clx.tar.gz 
 
-sudo tar xf /tmp/clx.tar.gz --directory=$install_dir
+tar xf /tmp/clx.tar.gz --directory=$install_dir
 
 echo "Installation completed successfully."
 if [[ ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
