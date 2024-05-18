@@ -1,9 +1,21 @@
 #!/bin/bash
-# Check if running with root privileges
-if [[ $EUID -ne 0 ]]; then
-  echo "This script requires root privileges. Please run with sudo."
-  exit 1
-fi
+
+# Function to print instructions for adding ~/.local/bin to PATH
+print_instructions() {
+    echo "To have access to clx from the command line, you need to add ~/.local/bin to your PATH."
+    echo "To add ~/.local/bin to your PATH, follow the instructions for your shell:"
+    echo ""
+    echo "Bash"
+    echo 'echo "export PATH=\$PATH:\$HOME/.local/bin" >> ~/.bashrc'
+    echo 'source ~/.bashrc'
+    echo ""
+    echo "Zsh:"
+    echo 'echo "export PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc'
+    echo 'source ~/.zshrc'
+    echo ""
+    echo "Fish:"
+    echo 'echo "set -Ux PATH \$PATH \$HOME/.local/bin" >> ~/.config/fish/config.fish'
+}
 
 # Define the URL to download from
 url="https://api.github.com/repos/The-Daishogun/clx/releases/latest"
@@ -27,8 +39,8 @@ if [[ -z "$download_url" ]]; then
   exit 1
 fi
 
-# Define the installation directory (you can change this to your preference)
-install_dir="/usr/local/bin"
+# Define the installation directory
+install_dir="$HOME/.local/bin"
 
 # Make sure the installation directory exists
 sudo mkdir -p "$install_dir"
@@ -39,3 +51,10 @@ curl -L "$download_url" --output /tmp/clx.tar.gz
 sudo tar xf /tmp/clx.tar.gz --directory=$install_dir
 
 echo "Installation completed successfully."
+if [[ ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
+    echo "~/.local/bin is already in your PATH. you can use clx freely."
+    echo "Usage: clx <prompt>"
+else
+    echo "~/.local/bin is not in your PATH."
+    print_instructions
+fi
