@@ -1,5 +1,6 @@
 # **clx**
 ## Generate CLI commands for common tasks, the easy way!
+![clx_video-ezgif com-resize](https://github.com/The-Daishogun/clx/assets/58051486/ce811a10-e15c-4a76-b76f-e03238e243d0)
 
 **clx** takes the powerful functionality from [Sh4yy](https://github.com/Sh4yy)'s [gist](https://gist.github.com/Sh4yy/3941bf5014bc8c980fad797d85149b65) and makes it simple to use as a command-line tool.
 
