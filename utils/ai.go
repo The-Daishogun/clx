@@ -27,12 +27,13 @@ func getSystemPrompt() string {
 	return prompt
 }
 
-func AskAI(client *openai.Client, config *Config, prompt string) error {
+func AskAI(client *openai.Client, config *Config, prompt string, stdInput string) error {
+
 	req := openai.ChatCompletionRequest{
 		Model: config.ModelID,
 		Messages: []openai.ChatCompletionMessage{
 			{Role: "system", Content: getSystemPrompt()},
-			{Role: "user", Content: prompt},
+			{Role: "user", Content: prompt + stdInput},
 		},
 	}
 
