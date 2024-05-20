@@ -30,12 +30,13 @@ func init() {
 }
 
 func main() {
-	if len(os.Args) < 2 {
+	stdInput := utils.ReadStdIn()
+	if len(os.Args) < 2 && stdInput == "" {
 		fmt.Println("Usage: clx <prompt>")
 		os.Exit(1)
 	}
 	phrase := strings.Join(os.Args[1:], " ")
-	if err := utils.AskAI(client, config, phrase); err != nil {
+	if err := utils.AskAI(client, config, phrase, stdInput); err != nil {
 		log.Fatal(err)
 	}
 }
