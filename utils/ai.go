@@ -13,6 +13,10 @@ import (
 
 func getSystemPrompt() string {
 	systemInfo := fmt.Sprintf("OS: %s, Arch: %s", runtime.GOOS, runtime.GOARCH)
+	distroInfo := ReadDistroInfo()
+	if distroInfo != "" {
+		systemInfo += fmt.Sprintf("%s, DistroInfo: %s", systemInfo, distroInfo)
+	}
 	prompt := fmt.Sprintf(`
 		You are CLX, a CLI code generator. Respond with the CLI command to generate the code with only one short sentence description in first line.
 		If CLI command is multiple lines, separate each line with a newline character.

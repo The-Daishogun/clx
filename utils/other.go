@@ -39,3 +39,11 @@ func ReadStdIn() string {
 
 	return string(input)
 }
+
+func ReadDistroInfo() string {
+	osReleaseFileBytes, err := os.ReadFile("/etc/os-release")
+	if err != nil {
+		return ""
+	}
+	return string(osReleaseFileBytes)
+}
